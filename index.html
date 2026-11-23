@@ -8,6 +8,162 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2305070a'/%3E%3Ccircle cx='16' cy='17' r='8' fill='%23e0231c'/%3E%3Crect x='4' y='8' width='24' height='2.6' fill='%23dfe7e0'/%3E%3Crect x='7' y='13' width='18' height='2' fill='%23dfe7e0'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/kage/fonts.css">
 <link rel="stylesheet" href="assets/kage/kage.css">
+<style>
+/* ================================================================
+   PORTFÓLIO DÉBORAH LAIS — overrides sobre o Kage CSS
+   ================================================================ */
+
+/* ---- Hero: vídeo + foto da Déborah ---- */
+.hero-portrait {
+  position: absolute;
+  right: clamp(20px, 6vw, 120px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  pointer-events: none;
+}
+.hero-portrait-wrap {
+  position: relative;
+  width: clamp(220px, 28vw, 420px);
+  aspect-ratio: 9/13;
+  overflow: hidden;
+  border: 1px solid rgba(224,35,28,.35);
+  box-shadow:
+    0 0 60px rgba(224,35,28,.18),
+    0 0 140px rgba(224,35,28,.08),
+    inset 0 0 40px rgba(0,0,0,.55);
+}
+/* black-and-white cinematic treatment */
+.hero-portrait-wrap video,
+.hero-portrait-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(1) contrast(1.08) brightness(0.92);
+  mix-blend-mode: luminosity;
+}
+/* vermilion overlay vignette */
+.hero-portrait-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom,
+      rgba(5,7,10,.0) 55%,
+      rgba(5,7,10,.72) 100%),
+    linear-gradient(to right,
+      rgba(224,35,28,.08) 0%,
+      rgba(0,0,0,0) 60%);
+  mix-blend-mode: normal;
+  pointer-events: none;
+}
+/* corner accent lines */
+.hero-portrait-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(224,35,28,.22);
+  pointer-events: none;
+  z-index: 2;
+}
+/* photo fallback: visible when video fails */
+.hero-portrait-wrap .portrait-photo {
+  position: absolute;
+  inset: 0;
+}
+.hero-portrait-wrap video { position: relative; z-index: 1; }
+
+/* portrait label */
+.hero-portrait-label {
+  margin-top: 14px;
+  font-size: 9px;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: rgba(224,35,28,.7);
+  font-weight: 500;
+  text-align: center;
+}
+
+/* hero layout: push text to left when portrait is visible */
+@media (min-width: 768px) {
+  .hero-top { max-width: 54%; }
+}
+@media (max-width: 767px) {
+  .hero-portrait {
+    position: relative;
+    right: auto; top: auto;
+    transform: none;
+    width: 70vw;
+    max-width: 280px;
+    margin: 0 auto 32px;
+  }
+  .hero-portrait-wrap { width: 100%; }
+  .hero .hero-top { text-align: center; }
+}
+
+/* ---- Assinatura ---- */
+.dl-signature {
+  display: inline-block;
+  max-height: 72px;
+  width: auto;
+  filter: invert(1) brightness(0.7) sepia(1) hue-rotate(-10deg) saturate(3);
+  opacity: .55;
+  pointer-events: none;
+  user-select: none;
+}
+.dl-sig-wrap {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.dl-sig-wrap::before {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(224,35,28,.35));
+}
+
+/* ---- Project cards with real screenshots ---- */
+.card-screenshot {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(.3) brightness(.7) contrast(1.05);
+  transition: filter .6s var(--ease), transform .6s var(--ease);
+}
+.card:hover .card-screenshot {
+  filter: grayscale(0) brightness(.82) contrast(1.05);
+  transform: scale(1.03);
+}
+/* keep existing card overlays on top */
+.card-fr .card-ar,
+.card-fr .glow,
+.card-fr .card-lab { z-index: 2; position: relative; }
+.card-fr { overflow: hidden; }
+
+/* ---- Footer signature ---- */
+.foot-signature {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 0 8px;
+  opacity: .45;
+}
+.foot-signature img {
+  max-height: 56px;
+  width: auto;
+  filter: invert(1) brightness(.65) sepia(1) hue-rotate(-10deg) saturate(2.5);
+}
+</style>
 <script>
 /* design-system catalog bridge */
 (function () {
@@ -95,14 +251,41 @@
 
 <!-- ============================================================ hero -->
 <section class="hero" id="hero" data-cam="0">
+
+  <!-- ★ PORTRAIT — vídeo + foto da Déborah Lais (elemento central) -->
+  <div class="hero-portrait" data-rv="fade" aria-label="Déborah Lais">
+    <div class="hero-portrait-wrap">
+      <!-- fallback foto estática -->
+      <img class="portrait-photo"
+           src="assets/projects/vertice-fitness.jpg"
+           alt="Déborah Lais"
+           style="display:none">
+      <!-- vídeo principal — b&w cinematográfico -->
+      <video autoplay loop muted playsinline
+             poster="assets/projects/vertice-fitness.jpg"
+             aria-hidden="true">
+        <source src="assets/media/deborah-hero2.mp4" type="video/mp4">
+        <source src="assets/media/deborah-hero.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-portrait-label">— déborah lais · 影 · 2026 —</div>
+    <div class="dl-sig-wrap">
+      <img class="dl-signature"
+           src="assets/media/assinatura.jpg"
+           alt="Assinatura Déborah Lais"
+           loading="lazy">
+    </div>
+  </div>
+
   <div class="hero-top">
     <div class="eyebrow" data-rv="fade"><span class="dot"></span> Portfólio 2026 — Desenvolvimento de Sistemas</div>
     <h1 class="display h-hero">
       <span class="mask-line"><span>Déborah</span></span>
       <span class="mask-line"><span>Lais.</span></span>
     </h1>
-    <p class="hero-sub body" data-rv="up">Noite de código, pixels bone-white e uma paixão vermilion
-      por experiências web que iluminam como lanterns num templo às sombras.</p>
+    <p class="hero-sub body" data-rv="up">Desenvolvedora web apaixonada por código limpo,
+      experiências cinematográficas e projetos que deixam rastro — como folhas vermelhas
+      sobre pedra de templo.</p>
   </div>
 
   <div class="hero-spacer"></div>
@@ -127,7 +310,7 @@
     <span class="peek-cap"><b class="jp">作品</b><i>Projetos — ver o caminho</i></span>
   </a>
 
-  <div class="word-fb" aria-hidden="true">KAGE</div>
+  <div class="word-fb" aria-hidden="true">DL</div>
 
   <div class="hero-side" data-rv="up">
     <span class="v jp">影の道</span>
@@ -196,6 +379,7 @@
   <div class="cards" id="cards">
     <article class="card" data-rv="up" data-view="0" data-cursor>
       <div class="card-fr" data-frame>
+        <img class="card-screenshot" src="assets/projects/vertice-fitness.jpg" alt="Vértice Fitness" loading="lazy">
         <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
         <i class="glow" style="--gx:80.2%; --gy:23.9%; --gr:22%; --gt:6.1s; --gt2:9.7s; --gc1:rgba(255,142,108,.50); --gc2:rgba(212,56,38,.24)"></i>
         <div class="card-lab"><b>Iron Pulse</b><span class="jp">体力</span></div>
@@ -204,14 +388,16 @@
     </article>
     <article class="card" data-rv="up" data-view="1" data-cursor>
       <div class="card-fr" data-frame>
+        <img class="card-screenshot" src="assets/projects/flutuacao-gameplay.jpg" alt="Flutuação Espacial" loading="lazy">
         <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
         <i class="glow glow--flame" style="--gx:70.5%; --gy:47.2%; --gr:14%; --gt:3.7s; --gt2:5.3s; --gc1:rgba(255,198,124,.62); --gc2:rgba(226,118,40,.30)"></i>
-        <div class="card-lab"><b>Key-tack</b><span class="jp">追跡</span></div>
+        <div class="card-lab"><b>Flutuação Espacial</b><span class="jp">宇宙</span></div>
       </div>
-      <div class="card-meta"><span>Rastreamento · Supabase</span><span>02 / 04</span></div>
+      <div class="card-meta"><span>Jogo · HTML / JS</span><span>02 / 04</span></div>
     </article>
     <article class="card" data-rv="up" data-view="2" data-cursor>
       <div class="card-fr" data-frame>
+        <img class="card-screenshot" src="assets/projects/exploremundo.jpg" alt="ExploreMundo" loading="lazy">
         <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
         <i class="glow" style="--gx:48.0%; --gy:16.8%; --gr:20%; --gt:7.3s; --gt2:11.2s; --gc1:rgba(255,138,104,.52); --gc2:rgba(208,54,36,.24)"></i>
         <div class="card-lab"><b>ExploreMundo</b><span class="jp">旅行</span></div>
@@ -220,11 +406,12 @@
     </article>
     <article class="card" data-rv="up" data-view="3" data-cursor>
       <div class="card-fr" data-frame>
+        <img class="card-screenshot" src="assets/projects/flutuacao-start.jpg" alt="Key-tack" loading="lazy">
         <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
         <i class="glow" style="--gx:60%; --gy:30%; --gr:18%; --gt:5s; --gt2:8s; --gc1:rgba(180,100,255,.45); --gc2:rgba(100,40,200,.20)"></i>
-        <div class="card-lab"><b>Flutuação Espacial</b><span class="jp">宇宙</span></div>
+        <div class="card-lab"><b>Key-tack</b><span class="jp">追跡</span></div>
       </div>
-      <div class="card-meta"><span>Jogo · HTML / JS</span><span>04 / 04</span></div>
+      <div class="card-meta"><span>Rastreamento · Supabase</span><span>04 / 04</span></div>
     </article>
   </div>
 </section>
@@ -3496,4 +3683,5 @@ else addEventListener('DOMContentLoaded', boot);
 
 </body>
 </html>
+
 
