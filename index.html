@@ -3389,7 +3389,7 @@ function cardAlpha(el) {
   return a;
 }
 function renderCards(rt) {
-  if (!CARDS.length) return;
+  return; /* cards use static screenshots */
   let drew = false;
   for (let i = 0; i < CARDS.length; i++) {
     const C = CARDS[i], r = C.el.getBoundingClientRect();
@@ -3683,5 +3683,6 @@ else addEventListener('DOMContentLoaded', boot);
 
 </body>
 </html>
+
 
 
