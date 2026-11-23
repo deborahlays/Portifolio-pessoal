@@ -10,35 +10,39 @@
 <link rel="stylesheet" href="assets/kage/kage.css">
 <style>
 /* ================================================================
-   PORTFÓLIO DÉBORAH LAIS — CORREÇÕES DEFINITIVAS
+   PORTFÓLIO DÉBORAH LAYS — CORREÇÕES DEFINITIVAS
    ================================================================ */
 
 /* 1. VÍDEO FULL-SCREEN DE FUNDO (ESTILO LANDO NORRIS)
       Enquadramento perfeito sem cortar a cabeça: object-position: center 15% */
 .bg-video-wrapper {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100vh;
-  z-index: 1; /* acima do WebGL, abaixo do conteúdo .page */
   overflow: hidden;
+  z-index: 1;
   pointer-events: none;
-  background: #05070a;
 }
-
 .bg-video-wrapper video {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  object-position: center 15% !important; /* preserva a cabeça e rosto da Déborah */
-  filter: contrast(1.06) brightness(0.68) saturate(1.1);
+  object-position: center top;
+  filter: contrast(1.05) brightness(0.68) saturate(1.1);
   display: block;
+}
+.bg-video-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 60% 25%, rgba(5,6,10,0.08) 0%, rgba(5,6,10,0.55) 60%, rgba(5,6,10,0.92) 100%),
+              linear-gradient(to bottom, rgba(5,6,10,0.4) 0%, transparent 20%, transparent 65%, #05060a 100%);
+  pointer-events: none;
 }
 
 .bg-video-overlay {
@@ -225,6 +229,17 @@ body[data-layout-gallery="b"] .cards,
   color: var(--muted);
   text-transform: uppercase;
 }
+.fg-pine, .fg-stones, .fg-sakura, .fg-wall, .peek, .hero-foot {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+.cards {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+  gap: 2rem !important;
+}
 </style>
 
 
@@ -265,6 +280,17 @@ body[data-layout-gallery="b"] .cards,
 <style>
 .ds-embed #nav{ display:none; }
 .ds-bg .page, .ds-bg #fg-sky, .ds-bg .rail, .ds-bg #cursor, .ds-bg #pre{ visibility:hidden !important; }
+.fg-pine, .fg-stones, .fg-sakura, .fg-wall, .peek, .hero-foot {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+.cards {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+  gap: 2rem !important;
+}
 </style>
 </head>
 <body data-layout-hero="b" data-layout-story="b" data-layout-gallery="b"
@@ -292,7 +318,7 @@ body[data-layout-gallery="b"] .cards,
         <path d="M6 12h32M9.5 17h25M22 8v28" stroke="#dfe7e0" stroke-width="1.2"/>
       </svg>
     </div>
-    <div class="pre-jp jp">影の道 · DÉBORAH LAIS</div>
+    <div class="pre-jp jp">影の道 · DÉBORAH LAYS</div>
     <div class="pre-bar"><i id="pre-fill"></i></div>
     <div class="pre-meta">
       <span>Carregando experiência</span><b><span id="pre-pct">0</span>%</b>
@@ -307,7 +333,7 @@ body[data-layout-gallery="b"] .cards,
       <path d="M5 13h34M9 18.4h26M22 8.5v27" stroke="#dfe7e0" stroke-width="1.5"/>
       <path d="M14 35.5h16" stroke="#dfe7e0" stroke-width="1.2" stroke-opacity=".6"/>
     </svg>
-    <span class="brand-tx"><b>DL</b><i>DÉBORAH LAIS</i></span>
+    <span class="brand-tx"><b>LAYS</b><i>DÉBORAH LAYS</i></span>
   </a>
   <nav class="nav-links" id="navlinks">
     <a class="nav-link" href="#gate" data-cursor><span>Sobre</span><span class="alt">自己</span></a>
@@ -326,7 +352,7 @@ body[data-layout-gallery="b"] .cards,
     <div class="eyebrow" data-rv="fade"><span class="dot"></span> Portfólio 2026 — Desenvolvimento de Sistemas</div>
     <h1 class="display h-hero">
       <span class="mask-line"><span>Déborah</span></span>
-      <span class="mask-line"><span>Lais.</span></span>
+      <span class="mask-line"><span>Lays.</span></span>
     </h1>
     <p class="hero-sub body" data-rv="up">
       Técnica em Desenvolvimento de Sistemas em formação na Etec Dra. Maria Augusta Saraiva.
@@ -336,25 +362,10 @@ body[data-layout-gallery="b"] .cards,
 
   <div class="hero-spacer"></div>
 
-  <div class="hero-foot">
-    <div class="hero-cue" data-rv="fade"><span>Role para entrar</span><span class="track"><i></i></span></div>
-    <div class="chapters" id="chips">
-      <div class="chip" data-chip="0" data-rv="up" data-cursor><span class="num">01</span>
-        <span class="tx"><b>Sobre</b><p>Etec Dra. Maria Augusta Saraiva & perfil profissional.</p></span></div>
-      <div class="chip" data-chip="1" data-rv="up" data-cursor><span class="num">02</span>
-        <span class="tx"><b>Projetos</b><p>Flutuação Espacial, Vértice Fitness, Key-tack e ExploreMundo.</p></span></div>
-      <div class="chip" data-chip="2" data-rv="up" data-cursor><span class="num">03</span>
-        <span class="tx"><b>Habilidades</b><p>HTML5, CSS3, JavaScript, Supabase, PWA e ferramentas.</p></span></div>
-      <div class="chip" data-chip="3" data-rv="up" data-cursor><span class="num">04</span>
-        <span class="tx"><b>Contato</b><p>GitHub, conexões e projetos colaborativos.</p></span></div>
-    </div>
+  
   </div>
 
-  <a class="peek" href="#pathways" data-view="3" data-rv="fade" data-cursor aria-label="Preview: Projetos">
-    <span class="peek-fr" data-frame></span>
-    <span class="peek-play"><svg viewBox="0 0 22 22" fill="none"><path d="M8 5.6 16.4 11 8 16.4z" fill="#dfe7e0"/></svg></span>
-    <span class="peek-cap"><b class="jp">作品</b><i>Projetos — ver galeria</i></span>
-  </a>
+  
 
   <!-- PALAVRA 3D FLUTUANTE LAYS COM A MESMA ANIMAÇÃO DO KAGE -->
   <div class="word-fb" aria-hidden="true">LAYS</div>
@@ -366,12 +377,6 @@ body[data-layout-gallery="b"] .cards,
 <!-- ============================================================ chapter I — Sobre -->
 <section class="sec" id="gate" data-cam="1">
   <div class="fg" data-fg="gate" aria-hidden="true">
-    <span class="fg-el fg-wall" data-fg-in="left">
-      
-    </span>
-    <span class="fg-el fg-pine" data-fg-in="right">
-      <img src="assets/kage/foreground/png/pine-tree.webp" alt="" width="1024" height="1438" loading="lazy" decoding="async">
-    </span>
     <span class="fg-el fg-grass" data-fg-in="up">
       <img src="assets/kage/foreground/png/tall-grass.webp" alt="" width="1717" height="916" loading="lazy" decoding="async">
     </span>
@@ -406,9 +411,6 @@ body[data-layout-gallery="b"] .cards,
 <!-- ============================================================ chapter II — Projetos -->
 <section class="sec" id="pathways" data-cam="2">
   <div class="fg" data-fg="pathways" aria-hidden="true">
-    <span class="fg-el fg-sakura fg-el--sway" data-fg-in="left">
-      <img src="assets/kage/foreground/png/sakura-branch.webp" alt="" width="1536" height="1024" loading="lazy" decoding="async">
-    </span>
     <span class="fg-el fg-leaves fg-el--sway" data-fg-in="right">
       <img src="assets/kage/foreground/png/maple-leaves.webp" alt="" width="1536" height="1024" loading="lazy" decoding="async">
     </span>
@@ -423,7 +425,7 @@ body[data-layout-gallery="b"] .cards,
     <span class="k"><b>02</b> — Projetos</span><span class="rule"></span><span class="k jp">作品集</span>
   </div>
       <div class="cards" id="cards">
-    <!-- Projeto 1: Flutuação Espacial (Jogo Próprio) -->
+    <!-- Projeto 1: Flutuação Espacial -->
     <article class="card" data-rv="up" data-cursor>
       <div class="card-fr">
         <img class="card-screenshot" src="assets/projects/flutuacao-gameplay.jpg" alt="Flutuação Espacial — Jogo" loading="lazy">
@@ -431,7 +433,7 @@ body[data-layout-gallery="b"] .cards,
         <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
         <div class="card-lab"><b>Flutuação Espacial</b><span class="jp">宇宙遊泳</span></div>
       </div>
-      <div class="card-meta"><span>Jogo de Desvio Espacial com Trilha Sonora Própria · HTML, JavaScript & Áudio</span><span>01 / 04</span></div>
+      <div class="card-meta"><span>Jogo Espacial com Trilha Sonora Própria · HTML & JavaScript</span><span>01 / 03</span></div>
     </article>
 
     <!-- Projeto 2: Vértice Fitness (Iron Pulse Gym) -->
@@ -442,7 +444,7 @@ body[data-layout-gallery="b"] .cards,
         <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
         <div class="card-lab"><b>Vértice Fitness</b><span class="jp">健身殿</span></div>
       </div>
-      <div class="card-meta"><span>Site Completo de Academia com PWA · HTML5, CSS3, JS & Service Worker</span><span>02 / 04</span></div>
+      <div class="card-meta"><span>Site Completo de Academia com PWA · HTML5, CSS3 & JS</span><span>02 / 03</span></div>
     </article>
 
     <!-- Projeto 3: ExploreMundo (Agência de Viagens) -->
@@ -453,32 +455,14 @@ body[data-layout-gallery="b"] .cards,
         <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
         <div class="card-lab"><b>ExploreMundo</b><span class="jp">世界巡礼</span></div>
       </div>
-      <div class="card-meta"><span>Plataforma Turística Interativa · Swiper.js (3D), Leaflet.js & AOS</span><span>03 / 04</span></div>
-    </article>
-
-    <!-- Projeto 4: Key-tack (Rastreamento de Objetos) -->
-    <article class="card" data-rv="up" data-cursor>
-      <div class="card-fr">
-        <img class="card-screenshot" src="assets/projects/flutuacao-start.jpg" alt="Key-tack — Rastreamento de Objetos" loading="lazy">
-        <div class="card-fr-overlay"></div>
-        <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
-        <div class="card-lab"><b>Key-tack</b><span class="jp">位置追跡</span></div>
-      </div>
-      <div class="card-meta"><span>Rastreamento Inteligente de Objetos · Full Stack, Supabase & Render</span><span>04 / 04</span></div>
+      <div class="card-meta"><span>Plataforma Turística Interativa · Swiper.js, Leaflet.js & AOS</span><span>03 / 03</span></div>
     </article>
   </div>
-
 </section>
 
 <!-- ============================================================ chapter III — Habilidades -->
 <section class="sec" id="lessons" data-cam="3">
   <div class="fg" data-fg="lessons" aria-hidden="true">
-    <span class="fg-el fg-wall fg-el--flip" data-fg-in="right">
-      
-    </span>
-    <span class="fg-el fg-stones" data-fg-in="up">
-      <img src="assets/kage/foreground/png/basalt-stones.webp" alt="" width="1536" height="996" loading="lazy" decoding="async">
-    </span>
     <span class="fg-el fg-grass" data-fg-in="up">
       <img src="assets/kage/foreground/png/tall-grass.webp" alt="" width="1717" height="916" loading="lazy" decoding="async">
     </span>
@@ -537,9 +521,7 @@ body[data-layout-gallery="b"] .cards,
     <span class="fg-el fg-grass" data-fg-in="up">
       <img src="assets/kage/foreground/png/tall-grass.webp" alt="" width="1717" height="916" loading="lazy" decoding="async">
     </span>
-    <span class="fg-el fg-sakura" data-fg-in="left">
-      <img src="assets/kage/foreground/png/sakura-branch.webp" alt="" width="1536" height="1024" loading="lazy" decoding="async">
-    </span>
+    
   </div>
   <div class="eyebrow" data-rv="fade">04 — Contato</div>
   <h2 class="display" data-rv="up">Vamos construir algo juntos?</h2>
@@ -560,9 +542,7 @@ body[data-layout-gallery="b"] .cards,
     <span class="fg-el fg-grass" data-fg-in="up">
       <img src="assets/kage/foreground/png/tall-grass.webp" alt="" width="1717" height="916" loading="lazy" decoding="async">
     </span>
-    <span class="fg-el fg-stones" data-fg-in="up">
-      <img src="assets/kage/foreground/png/basalt-stones.webp" alt="" width="1536" height="996" loading="lazy" decoding="async">
-    </span>
+    
   </div>
   <div class="foot-grid">
     <div class="foot-brand">
@@ -3741,6 +3721,8 @@ else addEventListener('DOMContentLoaded', boot);
 
 </body>
 </html>
+
+
 
 
 
