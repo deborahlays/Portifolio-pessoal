@@ -24,25 +24,94 @@
   overflow: hidden;
   z-index: 1;
   pointer-events: none;
+  background: #05070a;
 }
 .bg-video-wrapper video {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%) scale(0.68);
+  transform-origin: center 5%;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center top;
-  filter: contrast(1.05) brightness(0.68) saturate(1.1);
+  filter: contrast(1.05) brightness(0.72) saturate(1.1);
   display: block;
 }
 .bg-video-wrapper::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 60% 25%, rgba(5,6,10,0.08) 0%, rgba(5,6,10,0.55) 60%, rgba(5,6,10,0.92) 100%),
-              linear-gradient(to bottom, rgba(5,6,10,0.4) 0%, transparent 20%, transparent 65%, #05060a 100%);
+  background:
+    radial-gradient(circle at 50% 35%, rgba(5,7,10,0.05) 0%, rgba(5,7,10,0.45) 50%, rgba(5,7,10,0.92) 85%),
+    linear-gradient(to bottom, rgba(5,7,10,0.4) 0%, transparent 20%, transparent 60%, #05070a 100%);
   pointer-events: none;
+}
+
+/* ---- HERO SECTION REFORMULADA (DESIGN IMPACTANTE SCREENSHOT 4) ---- */
+.hero {
+  position: relative;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  padding: calc(var(--nav-h) + 20px) var(--pad) 40px;
+}
+
+.hero-main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 900px;
+  margin: auto 0;
+  z-index: 5;
+  position: relative;
+}
+
+.hero-role-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(224, 35, 28, 0.15);
+  border: 1px solid rgba(224, 35, 28, 0.45);
+  color: var(--bone);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 24px;
+  backdrop-filter: blur(8px);
+}
+
+.hero-role-badge .badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--vermilion);
+  box-shadow: 0 0 12px var(--vermilion);
+}
+
+.hero-main-container h1.hero-title {
+  font-size: clamp(52px, 8.5vw, 112px);
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+  margin: 0 0 22px;
+  color: var(--bone);
+  text-transform: uppercase;
+  font-weight: 800;
+  text-shadow: 0 4px 30px rgba(0,0,0,0.85);
+}
+
+.hero-subtitle {
+  font-size: clamp(15px, 1.4vw, 20px);
+  line-height: 1.6;
+  color: #dfe7e0;
+  max-width: 58ch;
+  text-shadow: 0 2px 14px rgba(0,0,0,0.9);
+  margin-bottom: 0;
 }
 
 .bg-video-overlay {
@@ -348,24 +417,21 @@ body[data-layout-gallery="b"] .cards,
 
 <!-- ============================================================ hero -->
 <section class="hero" id="hero" data-cam="0">
-  <div class="hero-top">
-    <div class="eyebrow" data-rv="fade"><span class="dot"></span> Portfólio 2026 — Desenvolvimento de Sistemas</div>
-    <h1 class="display h-hero">
-      <span class="mask-line"><span>Déborah</span></span>
-      <span class="mask-line"><span>Lays.</span></span>
+  <div class="hero-main-container">
+    <div class="hero-role-badge" data-rv="fade">
+      <span class="badge-dot"></span>
+      Desenvolvedora Web & Estudante de Sistemas
+    </div>
+    
+    <h1 class="hero-title" data-rv="up">
+      DEBORAH<br>LAYS.
     </h1>
-    <p class="hero-sub body" data-rv="up">
+    
+    <p class="hero-subtitle" data-rv="up">
       Técnica em Desenvolvimento de Sistemas em formação na Etec Dra. Maria Augusta Saraiva.
-      Crio experiências digitais interativas, responsivas e de alta performance.
+      Crio experiências digitais interativas, responsivas e de alta performance — do front-end moderno à integração completa com back-end.
     </p>
   </div>
-
-  <div class="hero-spacer"></div>
-
-  
-  </div>
-
-  
 
   <!-- PALAVRA 3D FLUTUANTE LAYS COM A MESMA ANIMAÇÃO DO KAGE -->
   <div class="word-fb" aria-hidden="true">LAYS</div>
