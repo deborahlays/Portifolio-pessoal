@@ -14,17 +14,19 @@
    ================================================================ */
 
 /* 1. VÍDEO FULL-SCREEN DE FUNDO (ESTILO LANDO NORRIS)
-      Enquadramento perfeito sem cortar a cabeça: object-position: center 15% */
+      Enquadramento perfeito e transição suave em degradê para a seção seguinte */
 .bg-video-wrapper {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 125vh;
   overflow: hidden;
   z-index: 1;
   pointer-events: none;
-  background: #05070a;
+  background: transparent;
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 68%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 68%, transparent 100%);
 }
 .bg-video-wrapper video {
   position: absolute;
@@ -41,8 +43,8 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 50% 35%, rgba(5,7,10,0.05) 0%, rgba(5,7,10,0.45) 50%, rgba(5,7,10,0.92) 85%),
-    linear-gradient(to bottom, rgba(5,7,10,0.4) 0%, transparent 20%, transparent 60%, #05070a 100%);
+    radial-gradient(circle at 50% 35%, rgba(5,7,10,0.05) 0%, rgba(5,7,10,0.4) 50%, rgba(5,7,10,0.8) 85%),
+    linear-gradient(to bottom, rgba(5,7,10,0.25) 0%, transparent 20%, transparent 60%, transparent 100%);
   pointer-events: none;
 }
 
@@ -437,13 +439,13 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* 4. PROJETOS: CARDS EM GRADE 2x2 COM FOTOS REAIS ENQUADRADAS */
+/* 4. PROJETOS: CARDS EM GRADE DE 3 COLUNAS HARMONIOSAS (SEM ESPAÇOS VAZIOS) */
 body[data-layout-gallery="b"] .cards,
 .cards {
   display: grid !important;
-  grid-template-columns: repeat(2, 1fr) !important;
+  grid-template-columns: repeat(3, 1fr) !important;
   grid-template-rows: auto !important;
-  gap: clamp(20px, 2.5vw, 36px) !important;
+  gap: clamp(16px, 2vw, 28px) !important;
   align-items: stretch !important;
   width: 100%;
 }
@@ -563,6 +565,13 @@ body[data-layout-gallery="b"] .cards,
   white-space: nowrap !important;
 }
 
+@media (max-width: 1080px) {
+  body[data-layout-gallery="b"] .cards,
+  .cards {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
 @media (max-width: 768px) {
   body[data-layout-gallery="b"] .cards,
   .cards {
@@ -595,7 +604,7 @@ body[data-layout-gallery="b"] .cards,
   color: var(--muted);
   text-transform: uppercase;
 }
-/* Divisor suave em degradê entre as seções — mantém o vídeo e o WebGL 100% visíveis */
+/* Transição suave em degradê entre as seções — fusão harmoniosa sem linhas rígidas */
 .sec {
   position: relative;
 }
@@ -603,12 +612,13 @@ body[data-layout-gallery="b"] .cards,
 .sec::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 6%;
-  right: 6%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(224, 35, 28, 0.45) 50%, transparent 100%);
+  top: -80px;
+  left: 0;
+  right: 0;
+  height: 160px;
+  background: radial-gradient(ellipse 70% 100% at 50% 50%, rgba(224, 35, 28, 0.08) 0%, rgba(224, 35, 28, 0.02) 45%, transparent 75%);
   pointer-events: none;
+  z-index: 1;
 }
 
 .fg-pine, .fg-stones, .fg-sakura, .fg-wall, .peek, .hero-foot, [data-fg="gate"], .fg-grass {
@@ -616,11 +626,6 @@ body[data-layout-gallery="b"] .cards,
   opacity: 0 !important;
   visibility: hidden !important;
   pointer-events: none !important;
-}
-.cards {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
-  gap: 2rem !important;
 }
 </style>
 
@@ -662,33 +667,6 @@ body[data-layout-gallery="b"] .cards,
 <style>
 .ds-embed #nav{ display:none; }
 .ds-bg .page, .ds-bg #fg-sky, .ds-bg .rail, .ds-bg #cursor, .ds-bg #pre{ visibility:hidden !important; }
-/* Divisor suave em degradê entre as seções — mantém o vídeo e o WebGL 100% visíveis */
-.sec {
-  position: relative;
-}
-
-.sec::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 6%;
-  right: 6%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(224, 35, 28, 0.45) 50%, transparent 100%);
-  pointer-events: none;
-}
-
-.fg-pine, .fg-stones, .fg-sakura, .fg-wall, .peek, .hero-foot, [data-fg="gate"], .fg-grass {
-  display: none !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-}
-.cards {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
-  gap: 2rem !important;
-}
 </style>
 </head>
 <body data-layout-hero="b" data-layout-story="b" data-layout-gallery="b"
@@ -829,7 +807,7 @@ body[data-layout-gallery="b"] .cards,
     </div>
   </div>
   <div class="gate-stats" data-rv="up">
-    <div><b>04</b><span>Projetos</span></div>
+    <div><b>03</b><span>Projetos</span></div>
     <div><b>3+</b><span>Anos estudando</span></div>
     <div><b>PWA</b><span>Full Stack</span></div>
     <div><b>∞</b><span>Curiosidade</span></div>
@@ -863,10 +841,6 @@ body[data-layout-gallery="b"] .cards,
             <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             <span>Jogar Agora</span>
           </a>
-          <a href="https://github.com/deborahlays/flutua-o-espacial" target="_blank" rel="noopener" class="card-action-btn card-action-btn--code" title="Repositório no GitHub" data-cursor>
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-            <span>Código GitHub</span>
-          </a>
         </div>
         <div class="card-lab"><b>Flutuação Espacial</b><span class="jp">宇宙遊泳</span></div>
       </div>
@@ -874,7 +848,6 @@ body[data-layout-gallery="b"] .cards,
         <span>Jogo Espacial com Trilha Sonora Própria · HTML & JS</span>
         <div class="card-bottom-links">
           <a href="https://deborahlays.github.io/flutua-o-espacial/" target="_blank" rel="noopener" class="card-quick-link" data-cursor>Jogar ↗</a>
-          <a href="https://github.com/deborahlays/flutua-o-espacial" target="_blank" rel="noopener" class="card-quick-link" data-cursor>GitHub ↗</a>
         </div>
       </div>
     </article>
@@ -887,11 +860,7 @@ body[data-layout-gallery="b"] .cards,
         <div class="card-links-overlay">
           <a href="https://deborahlays.github.io/Iron-Pulse-Gym/" target="_blank" rel="noopener" class="card-action-btn card-action-btn--play" title="Acessar site no ar" data-cursor>
             <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-            <span>Ver Site no Ar</span>
-          </a>
-          <a href="https://github.com/deborahlays/Iron-Pulse-Gym" target="_blank" rel="noopener" class="card-action-btn card-action-btn--code" title="Repositório no GitHub" data-cursor>
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-            <span>Código GitHub</span>
+            <span>Acessar Site</span>
           </a>
         </div>
         <div class="card-lab"><b>Vértice Fitness</b><span class="jp">健身殿</span></div>
@@ -899,8 +868,7 @@ body[data-layout-gallery="b"] .cards,
       <div class="card-meta">
         <span>Site de Academia com PWA · HTML5, CSS3 & JS</span>
         <div class="card-bottom-links">
-          <a href="https://deborahlays.github.io/Iron-Pulse-Gym/" target="_blank" rel="noopener" class="card-quick-link" data-cursor>Demo ↗</a>
-          <a href="https://github.com/deborahlays/Iron-Pulse-Gym" target="_blank" rel="noopener" class="card-quick-link" data-cursor>GitHub ↗</a>
+          <a href="https://deborahlays.github.io/Iron-Pulse-Gym/" target="_blank" rel="noopener" class="card-quick-link" data-cursor>Acessar ↗</a>
         </div>
       </div>
     </article>
@@ -913,11 +881,7 @@ body[data-layout-gallery="b"] .cards,
         <div class="card-links-overlay">
           <a href="https://deborahlays.github.io/-Explore-the-world/" target="_blank" rel="noopener" class="card-action-btn card-action-btn--play" title="Acessar site no ar" data-cursor>
             <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-            <span>Ver Site no Ar</span>
-          </a>
-          <a href="https://github.com/deborahlays/-Explore-the-world" target="_blank" rel="noopener" class="card-action-btn card-action-btn--code" title="Repositório no GitHub" data-cursor>
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-            <span>Código GitHub</span>
+            <span>Acessar Site</span>
           </a>
         </div>
         <div class="card-lab"><b>ExploreMundo</b><span class="jp">世界巡礼</span></div>
@@ -925,8 +889,7 @@ body[data-layout-gallery="b"] .cards,
       <div class="card-meta">
         <span>Plataforma Turística Interativa · Swiper & Leaflet</span>
         <div class="card-bottom-links">
-          <a href="https://deborahlays.github.io/-Explore-the-world/" target="_blank" rel="noopener" class="card-quick-link" data-cursor>Demo ↗</a>
-          <a href="https://github.com/deborahlays/-Explore-the-world" target="_blank" rel="noopener" class="card-quick-link" data-cursor>GitHub ↗</a>
+          <a href="https://deborahlays.github.io/-Explore-the-world/" target="_blank" rel="noopener" class="card-quick-link" data-cursor>Acessar ↗</a>
         </div>
       </div>
     </article>
@@ -1039,10 +1002,9 @@ body[data-layout-gallery="b"] .cards,
       <li><a href="#eternity" data-cursor>Contato</a></li>
     </ul></div>
     <div><h4>Projetos</h4><ul>
-      <li><a href="#pathways" data-cursor>Iron Pulse Gym</a></li>
-      <li><a href="#pathways" data-cursor>Key-tack</a></li>
-      <li><a href="#pathways" data-cursor>ExploreMundo</a></li>
       <li><a href="#pathways" data-cursor>Flutuação Espacial</a></li>
+      <li><a href="#pathways" data-cursor>Vértice Fitness</a></li>
+      <li><a href="#pathways" data-cursor>ExploreMundo</a></li>
     </ul></div>
     <div><h4>Links</h4><ul>
       <li><a href="https://github.com/deborahlays" data-cursor target="_blank" rel="noopener">GitHub (@deborahlays)</a></li>
