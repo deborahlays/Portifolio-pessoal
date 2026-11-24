@@ -111,6 +111,301 @@
   margin-bottom: 0;
 }
 
+/* ---- HERO ACTIONS & GITHUB BUTTONS ---- */
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+  z-index: 5;
+}
+
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-btn--primary {
+  background: var(--vermilion);
+  color: #fff;
+  border: 1px solid var(--vermilion);
+  box-shadow: 0 4px 20px rgba(224, 35, 28, 0.4);
+}
+
+.hero-btn--primary:hover {
+  background: #ff3830;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 26px rgba(224, 35, 28, 0.6);
+}
+
+.hero-btn--ghost {
+  background: rgba(223, 231, 224, 0.06);
+  color: var(--bone);
+  border: 1px solid rgba(223, 231, 224, 0.25);
+  backdrop-filter: blur(8px);
+}
+
+.hero-btn--ghost:hover {
+  background: rgba(223, 231, 224, 0.14);
+  border-color: rgba(223, 231, 224, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Nav GitHub Link */
+.nav-link--gh {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  color: var(--bone) !important;
+  border: 1px solid rgba(224, 35, 28, 0.4) !important;
+  padding: 4px 12px !important;
+  border-radius: 999px !important;
+  background: rgba(224, 35, 28, 0.12) !important;
+  transition: all 0.25s ease !important;
+}
+
+.nav-link--gh:hover {
+  background: var(--vermilion) !important;
+  border-color: var(--vermilion) !important;
+  color: #fff !important;
+}
+
+/* ---- SOBRE MIM: FOTO CENTRALIZADA E BIO ---- */
+.gate-grid {
+  display: grid !important;
+  grid-template-columns: minmax(280px, 360px) 1fr !important;
+  gap: clamp(32px, 5vw, 64px) !important;
+  align-items: center !important;
+}
+
+.about-portrait-card {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #090d13;
+  border: 1px solid rgba(224, 35, 28, 0.35);
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.8),
+    0 0 35px rgba(224, 35, 28, 0.12);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.about-portrait-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 24px 50px rgba(0,0,0,0.9),
+    0 0 45px rgba(224, 35, 28, 0.25);
+}
+
+.about-portrait-inner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #05070a;
+}
+
+.about-portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  filter: contrast(1.06) brightness(0.96);
+  transition: transform 0.5s ease;
+}
+
+.about-portrait-card:hover .about-portrait-img {
+  transform: scale(1.02);
+}
+
+.about-portrait-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(5,7,10,0.05) 0%, rgba(5,7,10,0) 40%, rgba(5,7,10,0.7) 80%, rgba(5,7,10,0.95) 100%);
+}
+
+.about-portrait-meta {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px 20px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.about-tag {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bone);
+}
+
+.about-sub {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--vermilion);
+  font-weight: 500;
+}
+
+.gate-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.gh-pill-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(224, 35, 28, 0.12);
+  border: 1px solid rgba(224, 35, 28, 0.35);
+  color: var(--bone);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.gh-pill-link:hover {
+  background: var(--vermilion);
+  border-color: var(--vermilion);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 860px) {
+  .gate-grid {
+    grid-template-columns: 1fr !important;
+    justify-items: center;
+  }
+  .about-portrait-card {
+    max-width: 320px;
+    margin-bottom: 20px;
+  }
+}
+
+/* ---- PROJETOS: CARDS & BOTÕES DIRETOS ---- */
+.card-fr {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-links-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 7, 10, 0.78);
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 5;
+  padding: 20px;
+}
+
+.card:hover .card-links-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.card-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 200px;
+  padding: 10px 16px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.card-action-btn--play {
+  background: var(--vermilion);
+  color: #fff;
+  border: 1px solid var(--vermilion);
+  box-shadow: 0 4px 14px rgba(224, 35, 28, 0.4);
+}
+
+.card-action-btn--play:hover {
+  background: #ff3a33;
+  transform: scale(1.03);
+}
+
+.card-action-btn--code {
+  background: rgba(223, 231, 224, 0.12);
+  color: var(--bone);
+  border: 1px solid rgba(223, 231, 224, 0.3);
+}
+
+.card-action-btn--code:hover {
+  background: rgba(223, 231, 224, 0.25);
+  border-color: rgba(223, 231, 224, 0.6);
+  transform: scale(1.03);
+}
+
+.card-bottom-links {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.card-quick-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: rgba(224, 35, 28, 0.14);
+  border: 1px solid rgba(224, 35, 28, 0.4);
+  color: var(--bone);
+  transition: all 0.2s ease;
+}
+
+.card-quick-link:hover {
+  background: var(--vermilion);
+  color: #fff;
+}
+
 .bg-video-overlay {
   position: absolute;
   inset: 0;
@@ -406,6 +701,10 @@ body[data-layout-gallery="b"] .cards,
     <a class="nav-link" href="#pathways" data-cursor><span>Projetos</span><span class="alt">作品</span></a>
     <a class="nav-link" href="#lessons" data-cursor><span>Habilidades</span><span class="alt">技能</span></a>
     <a class="nav-link" href="#eternity" data-cursor><span>Contato</span><span class="alt">連絡</span></a>
+    <a class="nav-link nav-link--gh" href="https://github.com/deborahlays" target="_blank" rel="noopener" data-cursor>
+      <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      <span>GitHub</span>
+    </a>
   </nav>
   <button class="nav-burger" aria-label="Menu" data-cursor><i></i><i></i></button>
 </header>
@@ -428,6 +727,17 @@ body[data-layout-gallery="b"] .cards,
       Técnica em Desenvolvimento de Sistemas em formação na Etec Dra. Maria Augusta Saraiva.
       Crio experiências digitais interativas, responsivas e de alta performance — do front-end moderno à integração completa com back-end.
     </p>
+
+    <div class="hero-actions" data-rv="up">
+      <a href="https://github.com/deborahlays" target="_blank" rel="noopener" class="hero-btn hero-btn--primary" data-cursor>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        <span>GitHub: @deborahlays</span>
+      </a>
+      <a href="#pathways" class="hero-btn hero-btn--ghost" data-cursor>
+        <span>Ver Projetos</span>
+        <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M3 11 11 3M5 3h6v6" stroke="currentColor" stroke-width="1.3"/></svg>
+      </a>
+    </div>
   </div>
 
   <!-- PALAVRA 3D FLUTUANTE LAYS COM A MESMA ANIMAÇÃO DO KAGE -->
@@ -448,19 +758,37 @@ body[data-layout-gallery="b"] .cards,
     <span class="k"><b>01</b> — Sobre Mim</span><span class="rule"></span><span class="k jp">自己紹介</span>
   </div>
   <div class="gate-grid">
-    <h2 class="display h-sec" data-rv="up">Código, design e um templo noturno como tela.</h2>
-    <div class="gate-copy">
-      <p class="lead" data-rv="up">Sou Déborah Lais, estudante de Técnico em Desenvolvimento de Sistemas na
-        Etec Dra. Maria Augusta Saraiva. Apaixonada por web, crio experiências digitais que
-        misturam código limpo, design impactante e tecnologias modernas.</p>
-      <p class="body" data-rv="up">Tenho experiência em desenvolvimento full stack com HTML, CSS e JavaScript,
-        back-end com Supabase e Render, Progressive Web Apps (PWA), e interfaces responsivas.
-        Cada projeto é uma jornada — como caminhar por um templo na escuridão, descobrindo
-        luz em cada detalhe.</p>
-      <a class="arrowlink" href="#pathways" data-rv="fade" data-cursor>
-        <span>Ver meus projetos</span>
-        <span class="ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
-      </a>
+    <div class="about-portrait-card" data-rv="up">
+      <div class="about-portrait-inner">
+        <img src="assets/media/deborah_foto_enhanced.jpg" alt="Déborah Lays — Técnica em Desenvolvimento de Sistemas" class="about-portrait-img">
+        <div class="about-portrait-overlay"></div>
+        <div class="about-portrait-meta">
+          <span class="about-tag">Déborah Lays</span>
+          <span class="about-sub">Desenvolvedora Web · ETEC</span>
+        </div>
+      </div>
+    </div>
+    <div class="gate-copy-content">
+      <h2 class="display h-sec" data-rv="up">Código, design e um templo noturno como tela.</h2>
+      <div class="gate-copy">
+        <p class="lead" data-rv="up">Sou Déborah Lays, estudante de Técnico em Desenvolvimento de Sistemas na
+          Etec Dra. Maria Augusta Saraiva. Apaixonada por web, crio experiências digitais que
+          misturam código limpo, design impactante e tecnologias modernas.</p>
+        <p class="body" data-rv="up">Tenho experiência em desenvolvimento full stack com HTML, CSS e JavaScript,
+          back-end com Supabase e Render, Progressive Web Apps (PWA), e interfaces responsivas.
+          Cada projeto é uma jornada — como caminhar por um templo na escuridão, descobrindo
+          luz em cada detalhe.</p>
+        <div class="gate-actions" data-rv="fade">
+          <a class="arrowlink" href="#pathways" data-cursor>
+            <span>Ver meus projetos</span>
+            <span class="ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
+          </a>
+          <a class="gh-pill-link" href="https://github.com/deborahlays" target="_blank" rel="noopener" data-cursor>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            <span>GitHub @deborahlays</span>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
   <div class="gate-stats" data-rv="up">
@@ -493,10 +821,25 @@ body[data-layout-gallery="b"] .cards,
       <div class="card-fr">
         <img class="card-screenshot" src="assets/projects/flutuacao-gameplay.jpg" alt="Flutuação Espacial — Jogo" loading="lazy">
         <div class="card-fr-overlay"></div>
-        <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
+        <div class="card-links-overlay">
+          <a href="https://deborahlays.github.io/flutua-o-espacial/" target="_blank" rel="noopener" class="card-action-btn card-action-btn--play" title="Jogar online" data-cursor>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <span>Jogar Agora</span>
+          </a>
+          <a href="https://github.com/deborahlays/flutua-o-espacial" target="_blank" rel="noopener" class="card-action-btn card-action-btn--code" title="Repositório no GitHub" data-cursor>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            <span>Código GitHub</span>
+          </a>
+        </div>
         <div class="card-lab"><b>Flutuação Espacial</b><span class="jp">宇宙遊泳</span></div>
       </div>
-      <div class="card-meta"><span>Jogo Espacial com Trilha Sonora Própria · HTML & JavaScript</span><span>01 / 03</span></div>
+      <div class="card-meta">
+        <span>Jogo Espacial com Trilha Sonora Própria · HTML & JS</span>
+        <div class="card-bottom-links">
+          <a href="https://deborahlays.github.io/flutua-o-espacial/" target="_blank" rel="noopener" class="card-quick-link" data-cursor>Jogar ↗</a>
+          <a href="https://github.com/deborahlays/flutua-o-espacial" target="_blank" rel="noopener" class="card-quick-link" data-cursor>GitHub ↗</a>
+        </div>
+      </div>
     </article>
 
     <!-- Projeto 2: Vértice Fitness (Iron Pulse Gym) -->
@@ -504,10 +847,25 @@ body[data-layout-gallery="b"] .cards,
       <div class="card-fr">
         <img class="card-screenshot" src="assets/projects/vertice-fitness.jpg" alt="Vértice Fitness — Iron Pulse Gym" loading="lazy">
         <div class="card-fr-overlay"></div>
-        <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
+        <div class="card-links-overlay">
+          <a href="https://deborahlays.github.io/Iron-Pulse-Gym/" target="_blank" rel="noopener" class="card-action-btn card-action-btn--play" title="Acessar site no ar" data-cursor>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            <span>Ver Site no Ar</span>
+          </a>
+          <a href="https://github.com/deborahlays/Iron-Pulse-Gym" target="_blank" rel="noopener" class="card-action-btn card-action-btn--code" title="Repositório no GitHub" data-cursor>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            <span>Código GitHub</span>
+          </a>
+        </div>
         <div class="card-lab"><b>Vértice Fitness</b><span class="jp">健身殿</span></div>
       </div>
-      <div class="card-meta"><span>Site Completo de Academia com PWA · HTML5, CSS3 & JS</span><span>02 / 03</span></div>
+      <div class="card-meta">
+        <span>Site de Academia com PWA · HTML5, CSS3 & JS</span>
+        <div class="card-bottom-links">
+          <a href="https://deborahlays.github.io/Iron-Pulse-Gym/" target="_blank" rel="noopener" class="card-quick-link" data-cursor>Demo ↗</a>
+          <a href="https://github.com/deborahlays/Iron-Pulse-Gym" target="_blank" rel="noopener" class="card-quick-link" data-cursor>GitHub ↗</a>
+        </div>
+      </div>
     </article>
 
     <!-- Projeto 3: ExploreMundo (Agência de Viagens) -->
@@ -515,10 +873,25 @@ body[data-layout-gallery="b"] .cards,
       <div class="card-fr">
         <img class="card-screenshot" src="assets/projects/exploremundo.jpg" alt="ExploreMundo — Agência de Viagens" loading="lazy">
         <div class="card-fr-overlay"></div>
-        <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
+        <div class="card-links-overlay">
+          <a href="https://deborahlays.github.io/-Explore-the-world/" target="_blank" rel="noopener" class="card-action-btn card-action-btn--play" title="Acessar site no ar" data-cursor>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            <span>Ver Site no Ar</span>
+          </a>
+          <a href="https://github.com/deborahlays/-Explore-the-world" target="_blank" rel="noopener" class="card-action-btn card-action-btn--code" title="Repositório no GitHub" data-cursor>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            <span>Código GitHub</span>
+          </a>
+        </div>
         <div class="card-lab"><b>ExploreMundo</b><span class="jp">世界巡礼</span></div>
       </div>
-      <div class="card-meta"><span>Plataforma Turística Interativa · Swiper.js, Leaflet.js & AOS</span><span>03 / 03</span></div>
+      <div class="card-meta">
+        <span>Plataforma Turística Interativa · Swiper & Leaflet</span>
+        <div class="card-bottom-links">
+          <a href="https://deborahlays.github.io/-Explore-the-world/" target="_blank" rel="noopener" class="card-quick-link" data-cursor>Demo ↗</a>
+          <a href="https://github.com/deborahlays/-Explore-the-world" target="_blank" rel="noopener" class="card-quick-link" data-cursor>GitHub ↗</a>
+        </div>
+      </div>
     </article>
   </div>
 </section>
@@ -590,10 +963,16 @@ body[data-layout-gallery="b"] .cards,
   <h2 class="display" data-rv="up">Vamos construir algo juntos?</h2>
   <p class="body-lg" data-rv="up">A porta do templo está aberta. Entre em contato e vamos
     criar experiências digitais inesquecíveis — código a código, pixel a pixel.</p>
-  <a class="cta" href="https://github.com/deborahlais" data-rv="fade" data-cursor target="_blank" rel="noopener">
-    <i></i><span>Ver GitHub</span>
-    <svg viewBox="0 0 14 14" fill="none" width="13" height="13"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg>
-  </a>
+  <div class="contact-actions" data-rv="fade" style="display:flex; gap:16px; flex-wrap:wrap; align-items:center;">
+    <a class="cta" href="https://github.com/deborahlays" data-cursor target="_blank" rel="noopener">
+      <i></i><span>GitHub: @deborahlays</span>
+      <svg viewBox="0 0 14 14" fill="none" width="13" height="13"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg>
+    </a>
+    <a class="cta cta--ghost" href="mailto:lays.etec.16@gmail.com" data-cursor style="background: rgba(223, 231, 224, 0.08); border: 1px solid rgba(223, 231, 224, 0.25);">
+      <i></i><span>Enviar E-mail</span>
+      <svg viewBox="0 0 14 14" fill="none" width="13" height="13"><path d="M1 3h12v8H1V3zm0 0l6 5 6-5" stroke="#dfe7e0" stroke-width="1.3"/></svg>
+    </a>
+  </div>
 </section>
 
 <!-- ============================================================ footer -->
@@ -629,8 +1008,8 @@ body[data-layout-gallery="b"] .cards,
       <li><a href="#pathways" data-cursor>Flutuação Espacial</a></li>
     </ul></div>
     <div><h4>Links</h4><ul>
-      <li><a href="https://github.com/deborahlais" data-cursor target="_blank" rel="noopener">GitHub</a></li>
-      <li><a href="mailto:deborah@email.com" data-cursor>E-mail</a></li>
+      <li><a href="https://github.com/deborahlays" data-cursor target="_blank" rel="noopener">GitHub (@deborahlays)</a></li>
+      <li><a href="mailto:lays.etec.16@gmail.com" data-cursor>lays.etec.16@gmail.com</a></li>
     </ul></div>
   </div>
     <div class="foot-signature-block">
