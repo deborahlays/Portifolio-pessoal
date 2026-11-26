@@ -3856,6 +3856,24 @@ function wireCursor() {
   })();
 }
 
+function wireEmailLinks() {
+  const isMobile = COARSE || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  $$('a[href^="mailto:"]').forEach(link => {
+    const email = (link.getAttribute('href') || '').replace(/^mailto:/i, '').split('?')[0].trim();
+    if (!email) return;
+    if (!isMobile) {
+      link.href = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(email);
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.addEventListener('click', () => {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(email).catch(() => {});
+        }
+      });
+    }
+  });
+}
+
 function makeGrain() {
   const S = 180, c = cvs(S, S), x = c.getContext('2d');
   const im = x.createImageData(S, S), d = im.data, r = mulberry32(9);
@@ -4181,7 +4199,7 @@ const JOBS = [
 function boot() {
   try {
     makeGrain();
-    wireReveals(); wireForegroundStages(); wireNav(); wireHeroExit(); wireFocus(); wireCursor();
+    wireReveals(); wireForegroundStages(); wireNav(); wireHeroExit(); wireFocus(); wireCursor(); wireEmailLinks();
   } catch (err) {
     console.warn('[kage] wire error', err);
   }
