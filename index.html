@@ -701,6 +701,11 @@ body[data-layout-closing="b"] .fin .fin-copy p {
   visibility: hidden !important;
   pointer-events: none !important;
 }
+
+/* 7. PRELOADER: barra branca sincronizada com a porcentagem até 100% */
+.pre-bar i {
+  transition: right 0.06s linear !important;
+}
 </style>
 
 
@@ -4182,7 +4187,9 @@ function boot() {
   const safetyTimer = setTimeout(() => {
     if (preEl && !preEl.classList.contains('done')) {
       console.warn('[kage] preloader safety timeout triggered');
-      start();
+      if (preFill) preFill.style.right = '0%';
+      if (prePct) prePct.textContent = '100';
+      setTimeout(start, 100);
     }
   }, 2500);
 
@@ -4197,7 +4204,9 @@ function boot() {
       if (i < JOBS.length) setTimeout(step, 16);
       else {
         clearTimeout(safetyTimer);
-        setTimeout(start, 180);
+        if (preFill) preFill.style.right = '0%';
+        if (prePct) prePct.textContent = '100';
+        setTimeout(start, 220);
       }
     };
     let r;
